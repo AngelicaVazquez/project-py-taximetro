@@ -1,12 +1,12 @@
 import time
 from taximeter import Taximeter, State
 
-def print_menu():
+def print_menu(taximeter):
     print("🚕 TaxiTech - Terminal para conductores")
     print("-" * 35)
     print("  [ I ] - Iniciar carrera")
-    print("  [ M ] - En movimiento (0,05 €/s)")
-    print("  [ P ] - Parado (0,02 €/s)")
+    print(f"  [ M ] - En movimiento ({taximeter.moving_fare:.2f} €/s)")
+    print(f"  [ P ] - Parado ({taximeter.stopped_fare:.2f} €/s)")
     print("  [ F ] - Finalizar carrera")
     print("  [ S ] - Salir del sistema")
     print("-" * 35)
@@ -15,7 +15,7 @@ def main():
     taximeter = Taximeter()
 
     while True:
-        print_menu()
+        print_menu(taximeter)
         command = input("\nIntroduzca la letra correspondiente a la acción que desee realizar: ").strip().upper()
         
         if command == 'I':
