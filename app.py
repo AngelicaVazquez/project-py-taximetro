@@ -1,5 +1,12 @@
-import time
+import logging
 from taximeter import Taximeter, State
+
+logging.basicConfig(
+    filename='taximetro.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    encoding='utf-8'
+)
 
 def print_menu(taximeter):
     print("🚕 TaxiTech - Terminal para conductores")
