@@ -1,4 +1,5 @@
 import time
+import json
 from enum import Enum
 
 class State(Enum):
@@ -6,9 +7,8 @@ class State(Enum):
     MOVING = "moving"
 
 class Taximeter:
-    def __init__(self):
-        self.stopped_fare = 0.02
-        self.moving_fare = 0.05
+    def __init__(self, config_file="config.json"):
+        self.load_config(config_file)
         
         self.current_state = State.STOPPED
         self.is_running = False
@@ -16,6 +16,19 @@ class Taximeter:
         self.start_time = None
         self.last_change_time = None
         self.accumulated_cost = 0.0
+
+    def load_config(self, config_file):
+        default_stopped = 0.02
+        default_moving = 0.05
+
+        try:
+            with open(config_file, "r") as file:
+                config = json.load(file)
+                self.stopped_fare = config.get("stopped_fare", default_stopped)
+                self.moving_fare = config.get("moving_fare", default_moving)
+        except (FileNotFoundError, json.JSONDecodeError):
+            self.stopped_fare = default_stopped
+            self.moving_fare = default_moving
 
     def start_ride(self):
         self.is_running = True
