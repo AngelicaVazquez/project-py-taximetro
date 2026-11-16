@@ -15,6 +15,7 @@ def print_menu(taximeter):
     print(f"  [ M ] - En movimiento ({taximeter.moving_fare:.2f} €/s)")
     print(f"  [ P ] - Parado ({taximeter.stopped_fare:.2f} €/s)")
     print("  [ F ] - Finalizar carrera")
+    print("  [ V ] - Ver histórico de carreras")
     print("  [ S ] - Salir del sistema")
     print("-" * 35)
 
@@ -56,6 +57,17 @@ def main():
                 print(f"💰 IMPORTE TOTAL A COBRAR: {total_to_pay:.2f} €")
                 print("=" * 35)
                 print("Listo para la siguiente carrera. Pulse [ I ] para iniciar")
+
+        elif command == 'V':
+            historial = taximeter.get_history()
+            print("\n" + "=" * 35)
+            print("📊 HISTÓRICO DE CARRERAS")
+            if not historial:
+                print("No hay carreras registradas")
+            else:
+                for carrera in historial:
+                    print(f"📅 Fecha: {carrera['fecha']} | ⏱️  Duración: {carrera['duracion']:.1f}s | 💰 Importe: {carrera['total']:.2f} €")
+            print("=" * 35)
                 
         elif command == 'S':
             print("Apagando el sistema...")
