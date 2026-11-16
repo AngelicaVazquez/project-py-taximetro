@@ -1,6 +1,8 @@
 import time
 import json
 import logging
+import os
+from datetime import datetime
 from enum import Enum
 
 class State(Enum):
@@ -8,8 +10,9 @@ class State(Enum):
     MOVING = "moving"
 
 class Taximeter:
-    def __init__(self, config_file="config.json"):
+    def __init__(self, config_file="config.json", history_file="history.json"):
         self.load_config(config_file)
+        self.history_file = history_file
         
         self.current_state = State.STOPPED
         self.is_running = False
@@ -74,7 +77,34 @@ class Taximeter:
             return 0.0
         
         final_total = self.calculate_current_total()
+        ride_duration = time.time() - self.start_time
         self.is_running = False
 
+        self.save_ride_to_history(ride_duration, final_total)
         logging.info(f"Carrera finalizada. Total a cobrar: {final_total:.2f}€")
         return final_total
+
+    def save_ride_to_history(self, ride_duration, total):
+        history = self.get_history()
+        new_ride = {
+            "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "duracion": ride_duration,
+            "total": total
+        }
+        history.append(new_ride)
+        
+        try:
+            with open(self.history_file, "w") as file:
+                json.dump(history, file, indent=4)
+        except IOError as e:
+            logging.error(f"Error al guardar el histórico: {e}")
+
+    def get_history(self):
+        if not os.path.exists(self.history_file):
+            return []
+        try:
+            with open(self.history_file, "r") as file:
+                return json.load(file)
+        except (json.JSONDecodeError, IOError) as e:
+            logging.error(f"Error al leer el archivo histórico: {e}")
+            return []
