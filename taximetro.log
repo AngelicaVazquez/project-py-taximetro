@@ -1,0 +1,7 @@
+2026-11-16 18:15:56,525 - INFO - Taxímetro arrancado. Tarifas cargadas: Parado = 0.03€/s, En movimiento = 0.07€/s
+2026-11-16 18:16:01,399 - INFO - Carrera iniciada.
+2026-11-16 18:16:08,593 - INFO - Estado cambiado a: MOVING. Acumulado parcial: 0.22€
+2026-11-16 18:16:14,561 - INFO - Estado cambiado a: STOPPED. Acumulado parcial: 0.63€
+2026-11-16 18:16:18,947 - INFO - Estado cambiado a: MOVING. Acumulado parcial: 0.77€
+2026-11-16 18:16:29,124 - INFO - Estado cambiado a: STOPPED. Acumulado parcial: 1.48€
+2026-11-16 18:16:36,549 - INFO - Carrera finalizada. Total a cobrar: 1.70€
