@@ -1,0 +1,7 @@
+instructions.md
+config.json
+history.json
+taximetro.log
+
+__pycache__/
+*.pyc
