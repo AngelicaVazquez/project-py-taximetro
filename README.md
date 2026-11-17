@@ -24,3 +24,29 @@ Sistema de taxímetro 100% software desarrollado en Python para la modernizació
 
 ```bash
 python app.py
+```
+
+## 🎮 Guía de Operación
+
+El sistema se controla mediante comandos de una sola letra para agilizar su uso:
+
+- **[ I ] Iniciar carrera:** Abre un nuevo servicio y comienza a tarifar (arranca por defecto en estado PARADO).
+- **[ M ] En movimiento:** Cambia al estado de marcha, aplicando la tarifa por segundo correspondiente.
+- **[ P ] Parado:** Cambia al estado de detención o baja velocidad (semáforos, atascos).
+- **[ F ] Finalizar carrera:** Cierra el servicio actual, muestra el importe total en euros a cobrar al pasajero y registra los datos en el histórico.
+- **[ V ] Ver histórico:** Imprime por pantalla un resumen de todas las carreras finalizadas.
+- **[ S ] Salir:** Cierra la aplicación de forma segura.
+
+## 📂 Estructura del Proyecto
+
+- `app.py`: Punto de entrada principal. Maneja la interfaz de línea de comandos (CLI) y la interacción con el usuario.
+- `taximeter.py`: Núcleo del dominio. Contiene la clase `Taximeter`, la gestión de estados y el motor de cálculo de precios.
+- `config.json`: Archivo de configuración externa (tarifas).
+- `history.json`: Almacenamiento persistente en formato JSON con los datos de facturación.
+- `test_taximeter.py`: Suite de tests unitarios para validar la precisión del taxímetro.
+- `taximetro.log`: Archivo autogenerado con los registros de ejecución del sistema.
+
+## 🚧 Roadmap Próximas Versiones
+
+- **Fase 3:** Implementación de interfaz gráfica (GUI) táctil para tablets y sistema de autenticación de seguridad.
+- **Fase 4:** Migración a base de datos relacional y exposición de servicios vía API REST.
