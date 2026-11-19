@@ -52,7 +52,6 @@ class TaxiGUI:
         for (text, row, col) in botones:
             action = lambda t=text: self.on_keypad_press(t)
             btn = tk.Button(keypad_frame, text=text, command=action, **btn_params)
-            # Expandir y llenar el grid para que los botones sean grandes
             btn.grid(row=row, column=col, sticky="nsew", padx=5, pady=5)
 
         for i in range(4):
